@@ -4,7 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-    index
-<a href="${pageContext.request.contextPath}/test.do">test</a>
+    <jsp:forward page="${APP_PATH}/index.htm"/>
 </body>
 </html>

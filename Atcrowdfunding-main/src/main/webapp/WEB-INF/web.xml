@@ -11,17 +11,6 @@
         <param-value>classpath*:spring/spring-*.xml</param-value>
     </context-param>
 
-    <!--
-        监听器:
-        创建Spring框架的IOC容器。
-        将IOC容器对象存放到application域。
-        ApplicationContext ioc = WebApplicationContextUtils.getWebApplicationContext(application);
-
-        ServletContextListener监听器接口:
-            监听ServletContext创建和销毁，
-                如果监听到ServletContext创建(服务器启动)，就会创建IOC容器(XmlWebApplicationContext)。
-                如果监听到ServletContext销毁(服务器销毁，或卸载项目)，就会销毁IOC容器。
-    -->
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
 
@@ -44,13 +33,29 @@
     </servlet-mapping>
 
     <!--
-    字符编码过滤器(默认对请求过滤):
-        只负责解决POST请求乱码问题。
-        默认对服务器内部的请求不进行过滤
+        监听器:
+        创建Spring框架的IOC容器。
+        将IOC容器对象存放到application域。
+        ApplicationContext ioc = WebApplicationContextUtils.getWebApplicationContext(application);
+
+        ServletContextListener监听器接口:
+            监听ServletContext创建和销毁，
+                如果监听到ServletContext创建(服务器启动)，就会创建IOC容器(XmlWebApplicationContext)。
+                如果监听到ServletContext销毁(服务器销毁，或卸载项目)，就会销毁IOC容器。
     -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <listener>
+        <listener-class>com.ys.atcrowdfunding.listener.StartSystemListener</listener-class>
+    </listener>
+
+    <!--
+    字符编码过滤器(默认对请求过滤):
+        只负责解决POST请求乱码问题。
+        默认对服务器内部的请求不进行过滤
+    -->
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

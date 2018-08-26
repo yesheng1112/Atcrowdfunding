@@ -37,9 +37,11 @@
 
     <bean id="exceptionResolver"
           class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!--<property name="exceptionAttribute" value="exception"/>--><!-- 异常解析器捕获异常后，会将异常对象存放到request域中，属性名称默认为exception -->
         <property name="exceptionMappings">
             <props>
                 <prop key="java.lang.Exception">error/error</prop>
+                <prop key="com.ys.atcrowdfunding.exception.LoginFailException">login</prop>
             </props>
         </property>
     </bean>

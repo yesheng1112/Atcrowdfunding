@@ -9,6 +9,10 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+        </sourceRoots>
       </configuration>
     </facet>
     <facet type="JRebel" name="JRebel">
@@ -48,6 +52,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -123,5 +128,6 @@
     <orderEntry type="module" module-name="Atcrowdfunding-manager-api" />
     <orderEntry type="module" module-name="Atcrowdfunding-potal-impl" />
     <orderEntry type="module" module-name="Atcrowdfunding-potal-api" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.82" level="application_server_libraries" />
   </component>
 </module>

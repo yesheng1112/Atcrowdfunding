@@ -3,13 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ys.atcrowdfunding.manager.dao.TestDao">
+<mapper namespace="com.atguigu.atcrowdfunding.manager.dao.TestDao">
 
-    <insert id="insert">
+	<insert id="insert">
         insert into t_student (
-        name
+            name
         ) values (
-        #{name}
+            #{name}
         )
     </insert>
 
