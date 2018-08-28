@@ -60,6 +60,7 @@
 </div>
 <script src="${APP_PATH}/jquery/jquery-2.1.1.min.js"></script>
 <script src="${APP_PATH}/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${APP_PATH}/jquery/layer/layer.js"></script>
 <script>
     function dologin() {
         var floginacct = $("#floginacct");
@@ -67,19 +68,38 @@
         var ftype = $("#ftype");
 
         //对于表单数据而言不能用null进行判断，如果文本框什么都不输入，获取的值是""
-        if (floginacct.val().trim() == ""){
-            alert("用户账号不能为空，请重新输入!");
-            floginacct.val("");
-            floginacct.focus();
+        if ($.trim(floginacct.val()) == ""){
+            layer.msg(
+                "用户账号不能为空，请重新输入!",
+                {
+                    time:1000,
+                    icon:5,
+                    shift:6
+                },
+                function () {
+                    floginacct.val("");
+                    floginacct.focus();
+                }
+            );
             return false;
         }
 
-        if (fuserpswd.val().trim() == ""){
-            alert("密码不能为空，请重新输入!");
-            fuserpswd.focus();
+        if ($.trim(fuserpswd.val()) == ""){
+            layer.msg(
+                "密码不能为空，请重新输入!" ,
+                {
+                    time:1000,
+                    icon:5,
+                    shift:6
+                },
+                function () {
+                    fuserpswd.focus();
+                }
+            );
             return false;
         }
 
+        var loadingIndex = -1;
         $.ajax({
             type:"POST",
             data:{
@@ -90,18 +110,34 @@
             url:"${APP_PATH}/doLogin.do",
             beforeSend:function(){
                 //一般做表单数据校验
+                loadingIndex = layer.msg("处理中",{icon:16});
                 return true;
             },
             success:function (result) {//{"success":true}或{"success":false,"message":"登录失败！"}
                 if (result.success){
+                    layer.close(loadingIndex);
                     //跳转主页面。
                     window.location.href="${APP_PATH}/main.htm";
                 }else {
-                    alert("not ok");
+                    layer.msg(
+                        result.message,
+                        {
+                            time:1000,
+                            icon:5,
+                            shift:6
+                        }
+                    );
                 }
             },
             error:function () {
-                alert("当前网络异常，稍后执行");
+                layer.msg(
+                    "登录失败！",
+                    {
+                        time:1000,
+                        icon:5,
+                        shift:6
+                    }
+                );
             }
 
         });

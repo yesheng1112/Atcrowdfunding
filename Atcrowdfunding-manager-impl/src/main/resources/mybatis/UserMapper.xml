@@ -59,4 +59,24 @@
 		from t_user where loginacct=#{loginacct} and userpswd=#{userpswd}
 	</select>
 
+	<select id="queryList" parameterType="map" resultMap="BaseResultMap">
+		select id, loginacct, userpswd,
+			   username, email, createtime
+		from t_user
+		<where>
+			<if test="queryText!=null">
+			  	loginacct like concat("%",#{queryText},"%")
+			</if>
+		</where>
+		limit #{startIndex},#{pagesize}
+	</select>
+
+	<select id="queryCount" parameterType="map" resultType="int">
+		select count(*) from t_user
+		<where>
+			<if test="queryText!=null">
+				loginacct like concat("%",#{queryText},"%")
+			</if>
+		</where>
+	</select>
 </mapper>

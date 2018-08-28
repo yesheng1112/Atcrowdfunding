@@ -1,10 +1,13 @@
 package com.ys.atcrowdfunding.util;
 
+
 public class AjaxResult {
 
     private Boolean success;
 
     private String message;
+
+    private Page page;
 
     public Boolean getSuccess() {
         return success;
@@ -20,5 +23,13 @@ public class AjaxResult {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
     }
 }
